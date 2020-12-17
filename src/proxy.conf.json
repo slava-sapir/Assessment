@@ -1,0 +1,7 @@
+{
+    "/api/*": {
+        "target": "https://api.hatchways.io/assessment/students",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

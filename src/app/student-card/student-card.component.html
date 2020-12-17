@@ -1,0 +1,48 @@
+
+
+    <div class="card" style="max-width: 700px;">
+       <div class="row g-0">
+         <div class="col-2 mt-4 mx-3">
+           <img src="{{ student.pic}}" alt="{{student.firstName}}"
+             class="thumbnail rounded-circle border">
+         </div>
+         
+         <div class="col-6">
+           <div class="card-body">
+             <h4 class="card-title">{{student.firstName}} {{student.lastName}}</h4>
+             <div class="offset-1">
+               <h6 class="card-text">Email: {{student.email}}</h6>
+               <h6 class="card-text">Company: {{student.company}}</h6>
+               <h6 class="card-text">Skill: {{student.skill}}</h6>
+               <h6 class="card-text">Average: {{getAvg(student.grades)}}%</h6>
+
+               <div class="mb-2" *ngIf="!testsShow">
+                <h6 class="card-text" *ngFor="let num of student.grades; let i = index">
+                 Test# {{i + 1}}: {{ num }}</h6>
+               </div>
+
+               
+                <div class="row" >
+                   <div class="mt-1 mx-3 mb-1" *ngFor="let tag of tags">
+                     <span class="label other">{{tag}}</span>
+                   </div>
+                </div>
+             
+                <div class="form-inline mt-2">
+                 <input type="text" (keyup.enter)="addTag(student.id)" #search
+                 class="form-control mr-2" style="width: 200px;" placeholder="Add tag"/>
+               </div>
+              
+             </div>
+           </div>
+         </div>
+            
+         <div *ngIf="testsShow" (click)="getTests()" class="row col-2 mt-4 mx-4">
+           <i class="fa fa-plus" style="cursor: pointer; font-size: 2em"></i>
+         </div>
+         <div *ngIf="!testsShow" (click)="getTests()" class="row col-2 mt-4 mx-4">
+           <i class="fa fa-minus" style="cursor: pointer; font-size: 2em"></i>
+         </div>
+
+       </div>
+     </div>
