@@ -9,13 +9,15 @@ import { HeadersInterceptor } from 'src/headers.interceptor';
 import { FormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { StudentCardComponent } from './student-card/student-card.component';
+import { InputFilterComponent } from './input-filter/input-filter.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    StudentCardComponent
+    StudentCardComponent,
+    InputFilterComponent
   ],
   imports: [
     BrowserModule,

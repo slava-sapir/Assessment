@@ -9,22 +9,18 @@ import { IStudent } from 'src/model/IStudent';
 export class StudentCardComponent implements OnInit {
   
   @Input() student!: IStudent;
-  @Input() students: IStudent[] = [];
   @ViewChild('search', { static: false }) searchTerm?: ElementRef;
-  @Output() submitted = new EventEmitter<IStudent[]>();
-  //grades: number[] =[];
+  @Output() submitted = new EventEmitter<IStudent>();
   testsShow: boolean = true;
-  tag: string = ''; 
-  tags: string[] = [];
-
+ 
   constructor() { }
 
   ngOnInit(): void {
   }
 
   getAvg(grades: []){
-    var sum = 0;
-    for( var i = 0; i < grades.length; i++ ){
+    let sum = 0;
+    for( let i = 0; i < grades.length; i++ ){
     sum += parseInt( grades[i], 10 ); 
    }
    return sum/grades.length 
@@ -34,19 +30,15 @@ export class StudentCardComponent implements OnInit {
     this.testsShow = !this.testsShow
   }
 
-  addTag(id: string){
-    this.tags.push((this.searchTerm?.nativeElement.value).trim());
-    this.students.forEach(el => {
-      if(el.id === id){
-        if(el.tag){
-         el.tag.push((this.searchTerm?.nativeElement.value).trim())
-        } else { 
-          el.tag = [];
-          el.tag.push(this.searchTerm?.nativeElement.value);
-        }
-      }
-    });
-    this.submitted.emit(this.students)
+  
+  addTag() {
+    if(this.student.tag) {
+      this.student.tag.push((this.searchTerm?.nativeElement.value).trim());
+    } else {
+      this.student.tag = [];
+      this.student.tag.push((this.searchTerm?.nativeElement.value).trim());
+    }
+    this.submitted.emit(this.student)
   }
 
 
